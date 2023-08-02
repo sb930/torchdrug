@@ -217,21 +217,14 @@ class KnowledgeGraphCompletion(tasks.Task, core.Configurable):
             metric[name] = score
 
             # Edited TorchDrug here to extract predicted links         
-            # Create a dictionary to hold the results
-            results = {
-                "metric": metric,
-                "ranking": ranking.cpu().numpy() # Convert the tensor to a NumPy array
-            }
-    
-        return results
-
-        # Include the DataFrame in the return value, alongside the metric
+            # Save the ranking as an attribute of the class
+            self.ranking = ranking.cpu().numpy()
         return metric
 
+    def get_ranking(self):
+        return self.ranking
+    
         # Edits completed
-
-        # Edited out as script above calls metric and dataframe of predicted edges 
-        # return metric
 
     def visualize(self, batch):
         h_index, t_index, r_index = batch.t()
