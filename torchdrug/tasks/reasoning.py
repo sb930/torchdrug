@@ -214,7 +214,7 @@ class KnowledgeGraphCompletion(tasks.Task, core.Configurable):
                 raise ValueError("Unknown metric `%s`" % _metric)
 
             name = tasks._get_metric_name(_metric)
-                metric[name] = score
+            metric[name] = score
 
             # Edited TorchDrug here to extract predicted links         
             # Save the ranking as an attribute of the class
